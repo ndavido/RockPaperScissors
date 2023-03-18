@@ -63,7 +63,7 @@ async def session_info(sessionId: str):
         else:
             player1, player2 = session_data["players"].keys()
             outcome1, outcome2 = session_data["players"].values()
-            winner = determine_winner(outcome1, outcome2)
+            winner = determine_winner(outcome1, outcome2, player1, player2)
             session_data["results"]["player1"] = outcome1
             session_data["results"]["player2"] = outcome2
             session_data["results"]["winner"] = winner
@@ -78,10 +78,10 @@ async def session_info(sessionId: str):
                 "winner": winner
             }
 
-def determine_winner(outcome1: str, outcome2: str) -> str:
+def determine_winner(outcome1: str, outcome2: str, player1: str, player2: str):
     if outcome1 == outcome2:
         return "tie"
     elif (outcome1 == "rock" and outcome2 == "scissors") or (outcome1 == "paper" and outcome2 == "rock") or (outcome1 == "scissors" and outcome2 == "paper"):
-        return "player1"
+        return player1
     else:
-        return "player2"
+        return player2
