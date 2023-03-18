@@ -25,5 +25,6 @@ except Exception as e:
 # SESSION INFO
 try:
     response = requests.get(f"{url}/api/session_info?sessionId={session_id}")
+    print(response.json())
 except Exception as e:
     print(e)
